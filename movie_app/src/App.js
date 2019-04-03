@@ -11,7 +11,26 @@ class App extends Component {
     setTimeout(() => {
       this.setState({
         movies: [
-          ...this.state.movies,
+          {
+            title: "Matrix",
+            poster:
+              "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/The_Matrix_Poster.jpg/220px-The_Matrix_Poster.jpg"
+          },
+          {
+            title: "Full Metal Jacket",
+            poster:
+              "https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Full_Metal_Jacket_poster.jpg/220px-Full_Metal_Jacket_poster.jpg"
+          },
+          {
+            title: "Oldboy",
+            poster:
+              "https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Oldboykoreanposter.jpg/220px-Oldboykoreanposter.jpg"
+          },
+          {
+            title: "Star Wars",
+            poster:
+              "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg/220px-Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg"
+          },
           {
             title: "Trainspotting",
             poster:
@@ -22,40 +41,19 @@ class App extends Component {
     }, 2000);
   }
 
-  state = {
-    greeting: "Hello!",
-    movies: [
-      {
-        title: "Matrix",
-        poster:
-          "https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/The_Matrix_Poster.jpg/220px-The_Matrix_Poster.jpg"
-      },
-      {
-        title: "Full Metal Jacket",
-        poster:
-          "https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Full_Metal_Jacket_poster.jpg/220px-Full_Metal_Jacket_poster.jpg"
-      },
-      {
-        title: "Oldboy",
-        poster:
-          "https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Oldboykoreanposter.jpg/220px-Oldboykoreanposter.jpg"
-      },
-      {
-        title: "Star Wars",
-        poster:
-          "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg/220px-Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg"
-      }
-    ]
+  state = {};
+
+  _renderMovies = () => {
+    const movies = this.state.movies.map((movie, index) => {
+      return <Movie title={movie.title} poster={movie.poster} key={index} />;
+    });
+    return movies;
   };
 
   render() {
     return (
       <div className="App">
-        {this.state.movies.map((movie, index) => {
-          return (
-            <Movie title={movie.title} poster={movie.poster} key={index} />
-          );
-        })}
+        {this.state.movies ? this._renderMovies() : "Loading"}
       </div>
     );
   }
