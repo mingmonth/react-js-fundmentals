@@ -17,9 +17,11 @@ class App extends Component {
       console.log(movie);
       return (
         <Movie
-          title={movie.title}
+          title={movie.title_english}
           poster={movie.medium_cover_image}
           key={movie.id}
+          genres={movie.genres}
+          synopsis={movie.synopsis}
         />
       );
     });
